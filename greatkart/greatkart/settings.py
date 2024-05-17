@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c5o0rgw3pwf1au6h5wb4cg)yd$(jiu)^t)@y7&yaawt-6x@v*9'
+SECRET_KEY = '+gfby1v)cpl_7omq)drlekf)o@*2ut^8wy&xk%6h!-g_+3g-^+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,10 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'category',
-    'accounts',
-    'store',
-    'carts',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +54,7 @@ ROOT_URLCONF = 'greatkart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,16 +62,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links',
-                'carts.context_processors.counter',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'greatkart.wsgi.application'
-
-AUTH_USER_MODEL='accounts.Account'
 
 
 # Database
@@ -126,10 +118,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/'static' 
-STATICFILES_DIRS = [
-    'greatkart/static',
-]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media' 
