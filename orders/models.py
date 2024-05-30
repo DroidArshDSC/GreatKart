@@ -2,7 +2,8 @@ from django.db import models
 from accounts.models import Account
 from store.models import Product, Variation
 
-# Create your models here.
+
+
 class Payment(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
@@ -13,7 +14,7 @@ class Payment(models.Model):
 
     def __str__(self):
         return self.payment_id
-    
+
 
 class Order(models.Model):
     STATUS = (
@@ -53,7 +54,8 @@ class Order(models.Model):
 
     def __str__(self):
         return self.first_name
-    
+
+
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)

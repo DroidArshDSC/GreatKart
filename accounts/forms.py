@@ -1,5 +1,5 @@
 from django import forms
-from .models import  Account
+from .models import  Account,UserProfile
 
 class RegsitrationForm(forms.ModelForm):
     password=forms.CharField(widget=forms.PasswordInput(attrs={
@@ -12,6 +12,7 @@ class RegsitrationForm(forms.ModelForm):
     class Meta:
         model=Account
         fields=['first_name','last_name','email','phone_number']
+
     def __init__(self,*args,**kwargs):
         super(RegsitrationForm,self).__init__(*args,**kwargs)
         self.fields['first_name'].widget.attrs["placeholder"]='Enter First Name'
@@ -30,3 +31,24 @@ class RegsitrationForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Password doesn't match."
             )
+        
+class UserForm(forms.ModelForm):
+    class Meta:
+        model=Account
+        fields=('first_name','last_name','phone_number')
+
+    def __init__(self,*args,**kwargs):
+        super(UserForm,self).__init__(*args,**kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs["class"]='form-control'
+
+class UserProfileForm(forms.ModelForm):
+    profile_picture=forms.ImageField(required=False,error_messages={'invalid':("Image files only")},widget=forms.FileInput)
+    class Meta:
+        model=UserProfile
+        fields=('address_line_1','address_line_2','city','state','country','profile_picture')
+
+    def __init__(self,*args,**kwargs):
+        super(UserProfileForm,self).__init__(*args,**kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs["class"]='form-control'
